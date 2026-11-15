@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#142125"><meta name="description" content="Eight short chapters about starting a new life in Berlin. Walk, choose, and find a little space for yourself.">
+<title>24 KILO · A New Life in Berlin</title>
+<link rel="stylesheet" href="../chapter-one/src/ui.css"><link rel="stylesheet" href="chapter.css"><link rel="stylesheet" href="creator.css">
+<script type="importmap">{"imports":{"three":"../movement-test/vendor/three.module.min.js"}}</script>
+</head><body>
+<header class="mast"><span class="brand">24 KILO</span><span class="brand-sub">A new life in Berlin</span><span class="mast-place" id="place">A month in Berlin</span><button class="quiet" id="menu" hidden>Pause</button></header>
+<main id="stage" aria-label="24 KILO, an interactive short story">
+<canvas id="world" tabindex="0" aria-label="3D game. Use WASD or arrow keys to walk, or tap the floor. Follow the arrow. Press E or tap an interaction when you are close."></canvas>
+<div id="markers" hidden></div>
+<div class="hud" id="hud" hidden><span class="scene-time" id="clock"></span><p id="objective" aria-live="polite"></p></div>
+<div id="actions" hidden><div id="quiet-choices"></div><button id="next-action" hidden></button><button id="act"><span id="act-label"></span><kbd>E</kbd></button></div>
+<section id="title-screen" class="title-screen"><div class="title-copy"><p class="kicker">Eight short chapters</p><h1>A new life<span>.</span></h1><p class="intro">One suitcase. Twenty-seven nights to find a room.<br>A month of learning how to feel at home.</p><div class="home-actions"><button id="continue" hidden>Continue your story <span>→</span></button><button id="begin" disabled>Begin story <span>→</span></button></div><p id="title-status" role="status">Opening the arrivals hall…</p></div></section>
+<div id="creator-root" hidden></div><div id="story-ui"></div>
+<div id="busy" hidden role="status">Opening the room…</div>
+</main>
+<footer class="foot"><span class="key-help">WASD / arrows to walk <i>·</i> E when close <i>·</i> </span><span>Tap the floor · Follow the arrow</span><span id="save-note" aria-live="polite"></span><button id="sound" class="quiet" aria-pressed="false">Sound off</button></footer>
+<script>
+const openingMessage = document.getElementById('title-status');
+function offerReload() {
+  if (!document.getElementById('begin').disabled || openingMessage.querySelector('button')) return;
+  openingMessage.textContent = 'The chapter is taking a while to open. ';
+  const retry = document.createElement('button');
+  retry.className = 'quiet'; retry.textContent = 'Reload'; retry.onclick = () => location.reload();
+  openingMessage.append(retry);
+}
+setTimeout(offerReload, 15000);
+</script>
+<script type="module">import('./game.js').catch(error => {console.error(error); offerReload();});</script>
+</body></html>

@@ -1,0 +1,5 @@
+Wood Floor by Dimitrios Savva, Poly Haven.
+Source: https://polyhaven.com/a/wood_floor
+License: CC0 1.0 Universal, https://polyhaven.com/license and https://creativecommons.org/publicdomain/zero/1.0/
+
+The 1K diffuse and OpenGL tangent-space normal maps were recompressed as JPEGs for this scene.

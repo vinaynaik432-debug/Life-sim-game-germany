@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="24 KILO, an eight-chapter 3D story about starting a new life in Berlin.">
+  <title>24 KILO · A New Life in Berlin</title>
+  <style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#142025;color:#f4ecdc;font:20px Georgia,serif}a{color:#e2c597}</style>
+</head>
+<body>
+  <p><a href="./24-Kilo-Game-Ready/chapter-one-3d/">Play 24 KILO</a></p>
+  <script>
+    const game = new URL('./24-Kilo-Game-Ready/chapter-one-3d/', location.href);
+    game.search = location.search;
+    game.hash = location.hash;
+    location.replace(game.href);
+  </script>
+</body>
+</html>

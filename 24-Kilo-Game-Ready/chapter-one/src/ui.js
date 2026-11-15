@@ -148,6 +148,13 @@ export class StoryUI {
 
   phone({ contact = 'Home', messages = [], draft = '', choices = [] } = {}) {
     const panel = this._mount('phone', `Messages with ${contact}`);
+    const screen = el('div', 'story-phone-screen');
+    const statusBar = el('div', 'story-phone-statusbar');
+    statusBar.setAttribute('aria-hidden', 'true');
+    const clock = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+    const connection = el('span', 'story-phone-connection');
+    connection.append(el('span', 'story-phone-signal'), el('span', 'story-phone-network', 'LTE'), el('span', 'story-phone-battery'));
+    statusBar.append(el('span', 'story-phone-clock', clock), el('span', 'story-phone-speaker'), connection);
     const header = el('header', 'story-phone-header');
     const avatar = el('span', 'story-contact-avatar', Array.from(contact)[0] || 'H');
     avatar.setAttribute('aria-hidden', 'true');
@@ -170,7 +177,14 @@ export class StoryUI {
     const status = el('p', 'story-phone-status', choices.length ? 'Choose what you want to share.' : '');
     status.setAttribute('aria-live', 'polite');
     const actions = el('div', 'story-phone-actions');
-    panel.append(header, log, composer, status, actions);
+    const content = el('div', 'story-phone-content');
+    const reply = el('div', 'story-phone-reply');
+    reply.append(composer, status, actions);
+    content.append(log, reply);
+    const homeBar = el('div', 'story-phone-homebar');
+    homeBar.setAttribute('aria-hidden', 'true');
+    screen.append(statusBar, header, content, homeBar);
+    panel.append(screen);
     const serial = this.serial;
     let choosing = false;
 
